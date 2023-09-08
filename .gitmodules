@@ -1,0 +1,3 @@
+[submodule "Assets/Yarnspinner"]
+	path = Assets/Yarnspinner
+	url = https://github.com/YarnSpinnerTool/YarnSpinner-Unity
