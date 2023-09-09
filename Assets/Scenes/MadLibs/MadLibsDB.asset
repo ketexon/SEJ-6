@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a9b5ae1615c1444a48ca0e938e58ae, type: 3}
+  m_Name: MadLibsDB
+  m_EditorClassIdentifier: 
+  Entries:
+  - Name: name
+    Prefab: {fileID: 2248159005510380352, guid: dcf4a74860e6d854ea9de8bef219b61c, type: 3}
+  - Name: time_period
+    Prefab: {fileID: 2248159005510380352, guid: 1383156ea2714e84ea50dfee4ae3a310, type: 3}
+  - Name: memory_type
+    Prefab: {fileID: 2248159005510380352, guid: aee8c4010c56fda4a95b78315ffbac78, type: 3}
+  - Name: friend_character
+    Prefab: {fileID: 2248159005510380352, guid: 9ee396385183cd6498812a7ea0497054, type: 3}
+  - Name: clothing
+    Prefab: {fileID: 2248159005510380352, guid: 0225e4f4730e06440b0a5ce99ce7c23d, type: 3}
+  - Name: colors
+    Prefab: {fileID: 2248159005510380352, guid: 23d647b6b3a3efc4797eff8d24fb22df, type: 3}
+  - Name: cost
+    Prefab: {fileID: 2248159005510380352, guid: c5891153d7440744e836689ebb8fdd10, type: 3}
+  - Name: drink_type
+    Prefab: {fileID: 2248159005510380352, guid: 6e6507cee8f430e4696694ea2e9de773, type: 3}
+  - Name: employer
+    Prefab: {fileID: 2248159005510380352, guid: e6ae61593cd527945b506a58b721a4aa, type: 3}
+  - Name: excuse
+    Prefab: {fileID: 2248159005510380352, guid: 337fd63d89fba8a4a9241a48b864b43f, type: 3}
+  - Name: hideout
+    Prefab: {fileID: 2248159005510380352, guid: ef22028528ecfb84bbcf4145b7ade431, type: 3}
+  - Name: home
+    Prefab: {fileID: 2248159005510380352, guid: a577ec4a4d4d0e942ab4b3d45d7fa8ca, type: 3}
+  - Name: loud_sound
+    Prefab: {fileID: 2248159005510380352, guid: afb6761ec85e2914b9565dd1d7766ad7, type: 3}
+  - Name: sick
+    Prefab: {fileID: 2248159005510380352, guid: 7c98ccfaaa92b1f42a765cd23e10db1d, type: 3}
+  - Name: song
+    Prefab: {fileID: 2248159005510380352, guid: 2397ceeda819a8b44ba3f8c9d1516365, type: 3}
+  - Name: stranded_verb
+    Prefab: {fileID: 2248159005510380352, guid: b28817403514b3b4c97d210352f83961, type: 3}
+  - Name: time_type
+    Prefab: {fileID: 2248159005510380352, guid: 5be857a95d006144bb8dfd528c522026, type: 3}

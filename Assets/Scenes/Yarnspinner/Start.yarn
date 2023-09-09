@@ -1,0 +1,28 @@
+﻿title: Start
+---
+<<declare $player_name = "" as string>>
+<<declare $time_period = "" as string>>
+<<declare $memory_type = "" as string>>
+<<declare $friend_character = "" as string>>
+<<declare $stranded_verb = "" as string>>
+<<declare $clothing = "" as string>>
+<<declare $song = "" as string>>
+<<declare $time_type = "" as string>>
+<<declare $loud_sound = "" as string>>
+<<declare $hideout = "" as string>>
+<<declare $color1 = "" as string>>
+<<declare $color2 = "" as string>>
+<<declare $drink = "" as string>>
+<<declare $cost = "" as string>>
+<<declare $employer = "" as string>>
+<<declare $excuse = "" as string>>
+<<set_music main>>
+John: Whomst be there?
+<<run_lib excuse>>
+===
+title: Next
+---
+John: Oh howdy there {$player_name}! It sure is a pleasure to meet you :)
+John: Where are you from!
+<<run_lib time_period>>
+===
