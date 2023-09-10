@@ -100,7 +100,7 @@ public class DialogueSceneManager : MonoBehaviour
             {
                 GlobalState.PathsSeen.DrinkMilk = true;
             }
-            else if (timePeriod.ToLower().StartsWith("un"))
+            else if (drink.ToLower().StartsWith("un"))
             {
                 GlobalState.PathsSeen.DrinkUnidentifiable = true;
             }
