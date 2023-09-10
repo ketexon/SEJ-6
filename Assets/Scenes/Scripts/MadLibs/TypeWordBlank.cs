@@ -22,6 +22,6 @@ public class TypeWordBlank : WordBlankBase
 
     void OnEndEdit(string value)
     {
-        Value = value;
+        Value = value.Length > 0 ? value : null;
     }
 }

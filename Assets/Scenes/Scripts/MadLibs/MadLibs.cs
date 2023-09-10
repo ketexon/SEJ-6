@@ -34,8 +34,15 @@ public class MadLibsEditor : Editor
 #endif
 
 [RequireComponent(typeof(CanvasGroup))]
+[RequireComponent(typeof(AudioSource))]
 public class MadLibs : MonoBehaviour
 {
+#if UNITY_EDITOR
+    const bool RequireAudioFinishToSubmit = false;
+#else
+    const bool RequireAudioFinishToSubmit = true;
+#endif
+
     [SerializeField]
     List<WordBlankBase> m_blanks = new();
 
@@ -43,15 +50,21 @@ public class MadLibs : MonoBehaviour
     Button m_submitButton;
 
     [SerializeField]
-    float m_transitionDuration = 0.5f;
+    CanvasGroup m_pirateMap;
 
     [SerializeField]
-    DialogueRunner m_dialogueRunner;
+    float m_transitionDuration = 0.5f;
+
 
     [SerializeField]
     string m_nextYarnScript;
 
+    DialogueRunner m_dialogueRunner;
     CanvasGroup m_canvasGroup;
+    AudioSource m_audioSource;
+    AudioClip m_audioClip;
+
+    bool m_audioFinished;
 
     Dictionary<string, string> m_blankValues = new();
 
@@ -64,9 +77,11 @@ public class MadLibs : MonoBehaviour
     void Awake()
     {
         m_canvasGroup = GetComponent<CanvasGroup>();
+        m_audioSource = GetComponent<AudioSource>();
 
         m_submitButton.interactable = false;
         m_submitButton.onClick.AddListener(OnSubmit);
+        m_pirateMap.alpha = 0;
 
         foreach (var blank in m_blanks)
         {
@@ -88,9 +103,49 @@ public class MadLibs : MonoBehaviour
         StartCoroutine(EnterCoroutine());
     }
 
-    public void Load(DialogueRunner dialogueRunner)
+    void Start()
     {
+        if(m_audioClip != null)
+        {
+            m_audioSource.clip = m_audioClip;
+            m_audioSource.Play();
+        }
+        UpdateSubmitEnabled();
+    }
+
+    public void Load(DialogueRunner dialogueRunner, string nextLine, AudioClip audioClip, bool showPirateMap)
+    {
+        Debug.Log("Load");
         m_dialogueRunner = dialogueRunner;
+        m_nextYarnScript = nextLine;
+        if(m_audioSource == null)
+        {
+            m_audioSource = GetComponent<AudioSource>();
+        }
+
+        if(audioClip != null)
+        {
+            m_audioFinished = false;
+            m_audioClip = audioClip;
+        }
+        else
+        {
+            m_audioFinished = true;
+        }
+
+        if (showPirateMap)
+        {
+            m_pirateMap.alpha = 1;
+        }
+    }
+
+    void Update()
+    {
+        if (!m_audioFinished && !m_audioSource.isPlaying)
+        {
+            m_audioFinished = true;
+            UpdateSubmitEnabled();
+        }
     }
 
     void OnWordSet(WordBlankBase blank)
@@ -101,13 +156,16 @@ public class MadLibs : MonoBehaviour
 
     void UpdateSubmitEnabled()
     {
-        bool disabled = false;
-        foreach (var entry in m_blankValues)
+        bool disabled = RequireAudioFinishToSubmit && !m_audioFinished;
+        if (!disabled)
         {
-            if (entry.Value == null)
+            foreach (var entry in m_blankValues)
             {
-                disabled = true;
-                break;
+                if (entry.Value == null)
+                {
+                    disabled = true;
+                    break;
+                }
             }
         }
 

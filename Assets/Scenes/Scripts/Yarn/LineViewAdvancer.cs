@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Yarn.Unity;
 
-[RequireComponent(typeof(LineView))]
+[RequireComponent(typeof(CustomLineView))]
 public class DialogueAdvancer : MonoBehaviour, IPointerClickHandler
 {
-    LineView lineView;
+    CustomLineView lineView;
 
     void Awake() { 
-        lineView = GetComponent<LineView>();
+        lineView = GetComponent<CustomLineView>();
     }
 
     public void OnPointerClick(PointerEventData eventData)

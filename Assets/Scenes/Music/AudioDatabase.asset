@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: AudioDatabase
   m_EditorClassIdentifier: 
   AudioFiles:
-  - Name: main
-    Clip: {fileID: 8300000, guid: 9861c996d35558447a0f2686700c67ac, type: 3}
-  - Name: sfx
-    Clip: {fileID: 8300000, guid: e2522e61486b84a52874f628781287d6, type: 3}
+  - Name: theme_default
+    Clip: {fileID: 8300000, guid: 4f388c7947c2a4648a5b9d06c2729e5d, type: 3}
+  - Name: theme_1920
+    Clip: {fileID: 8300000, guid: 655daabedf30d6e4ab3bbcfac7486a0a, type: 3}
+  - Name: theme_2060
+    Clip: {fileID: 8300000, guid: f69aa49f9ae7af84f8239daf92b8f5e7, type: 3}
+  - Name: theme_1920_mil
+    Clip: {fileID: 8300000, guid: 15cebc9974608724291793ae8089a76e, type: 3}
+  - Name: theme_2060_mil
+    Clip: {fileID: 8300000, guid: 79743b0681205b04b84d658a752966f9, type: 3}
+  - Name: theme_1920_sport
+    Clip: {fileID: 8300000, guid: 31e8b3692fd4f28448737dd9348debc1, type: 3}
+  - Name: theme_2060_sport
+    Clip: {fileID: 8300000, guid: 1ba30bf7cbc447b419c47506314088ee, type: 3}

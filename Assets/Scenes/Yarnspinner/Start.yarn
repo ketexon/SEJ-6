@@ -16,13 +16,395 @@
 <<declare $cost = "" as string>>
 <<declare $employer = "" as string>>
 <<declare $excuse = "" as string>>
-<<set_music main>>
-John: Whomst be there?
-<<run_lib excuse>>
+<<set_fg fg_forest instant>>
+<<set_bg bg_forest instant>>
+<<set_music theme_default>>
+<<show_sprite protag>>
+Narrator: Under the forest canopy, you scan your surroundings in search of a path only to find yourself completely... utterly... lost. #line:0
+Narrator: You want to go home, but... find yourself forgetting. #line:1
+???: I can’t remember home. #line:2
+Narrator: Oh my, how common it is for humans to get lost in the life they’re living. #line:3
+Narrator: Head drooping, there’s something lying in your lap. #line:4
+<<run_lib name NameGiven 5>>
 ===
-title: Next
+title: NameGiven
 ---
-John: Oh howdy there {$player_name}! It sure is a pleasure to meet you :)
-John: Where are you from!
-<<run_lib time_period>>
+<<if is_host($player_name)>>
+[empty/]#line:7
+<<else>>
+[empty/]#line:6
+<<endif>>
+<<run_lib time_period TimePeriodGiven 8>>
+===
+title: TimePeriodGiven
+---
+<<if starts_with(to_lower($time_period), "1920")>>
+<<jump BritainStart>>
+<<else>>
+<<jump UtopioStart>>
+<<endif>>
+===
+title: BritainStart
+---
+<<set_fg fg_brit1920>>
+<<set_bg bg_brit1920>>
+<<set_music theme_1920>>
+{$player_name}: I grew up in Britain in the 1920s. I always fancied looking at the multi-coloured brick houses along the path home.#line:9
+{$player_name}: Everyone was always in a rush. It was a bustling time after the war ended. Excitement around every corner.#line:10
+{$player_name}: We’d stick our heads into the pubs and clubs, trying to get a peek at the jazz performers live. And, we got away with it for a while! Well... until the doorman spotted us. #line:11
+{$player_name}: I’d never know whether to take the longer, scenic way or hurry home for mum’s shepherd's pie. #line:12
+{$player_name}: Really? I prefer it with barbecue sauce.. #line:12.1
+<<run_lib memory_type SickStart 17>>
+===
+title: UtopioStart
+---
+<<set_fg fg_utop2060>>
+<<set_bg bg_utop2060>>
+<<set_music theme_2060>>
+{$player_name}: I grew up in the 2060s Utopio. I had like the gnarliest Anti-Gravity Surfer to cruise on home. It would be like VROOOOOOM 5 seconds tops! No cap.#line:13
+{$player_name}: On the low, my muh thinks it takes me 20 minutes. She real slow on tech so she easy fooled. She don’t even know how many units I got to blow!#line:14
+{$player_name}: Ughhhhhhh. Mute yourself. Bro, I could just ban you from my servers. Lighten up.#line:15
+{$player_name}: Hehe, like me now?! Bought it a couple years ago. An Oxel Sensation suit. Packs a hefty VR punch.#line:16
+<<run_lib memory_type SickStart 17>>
+===
+title: SickStart
+---
+<<if to_lower($memory_type) == "sick">>
+{$player_name}: It was real sick, man. You feel me?#line:18
+<<else>>
+{$player_name}: It really spiced up my life if ya know what I mean.#line:19
+<<endif>>
+<<run_lib friend_character FriendCharacterEnd 20>>
+===
+title: FriendCharacterEnd
+---
+<<if starts_with(to_lower($friend_character), "pirate")>>
+<<jump PirateStart>>
+<<else>>
+<<jump SharkOutOfWaterStart>>
+<<endif>>
+===
+title: SharkOutOfWaterStart
+---
+<<show_sprite shark>>
+{$player_name}: Oh, my! It’s a shark!#line:21
+{$player_name}: Look how happily, it flops!#line:22
+Shark: “Flop, flopflopflop, flop, flop, chomp chomp, floooooooooooop”#line:23
+Shark: Floppity, chomp chomp chomp. Flip flop. Flopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflopflop.”#line:24
+<<run_lib stranded_verb StrandedVerbEnd 25>>
+===
+title: PirateStart
+---
+<<show_sprite pirate>>
+Pirate: Arrrrrrrrrrrrrr you lost, young matey?#line:26
+{$player_name}: I’m having trouble remembering the way home. Could you help me?#line:27
+Pirate: Here, lemme draw it out for ya on dis here map.#line:28
+Narrator: You hand over your paper.#line:29
+Pirate: There ye are. Follow these seas and you’ll find yourself in a place worth treasuring.#line:30
+<<run_lib stranded_verb StrandedVerbEnd 31>>
+===
+title: StrandedVerbEnd
+---
+<<if starts_with(to_lower($stranded_verb), "gaming")>>
+<<jump GamingStart>>
+<<else>>
+<<jump SighGyrateStart>>
+<<endif>>
+===
+title: SighGyrateStart
+---
+Narrator: You observe, puzzled on how to help them out of their current condition.#line:32
+<<run_lib clothing ClothingEnd 34.5>>
+===
+title: GamingStart
+---
+{$player_name}: Didn’t you put TFT in your hidden folder for a reason?#line:33
+Narrator: They look up at me with bags under their eyes. Lips caked in chip crumbs. I want help, but there’s no way out of the pit they’ve dug for themselves.#line:34
+<<run_lib clothing ClothingEnd 34.5>>
+===
+title: ClothingEnd
+---
+<<if starts_with(to_lower($clothing), "sock")>>
+<<jump SocksStart>>
+<<else>>
+<<jump WeddingRingStart>>
+<<endif>>
+===
+title: SocksStart
+---
+{$player_name}: Not for free.#line:35
+<<run_lib song SongEnd 37>>
+===
+title: WeddingRingStart
+---
+{$player_name}: With such a stunning display before my eyes, I had to hide my wedding ring. Can’t pass up an opportunity like this.#line:36
+<<run_lib song SongEnd 37>>
+===
+title: SongEnd
+---
+<<if starts_with(to_lower($song), "diggy")>>
+<<jump DiggyDiggyHoleStart>>
+<<else>>
+<<jump ScarboroughStart>>
+<<endif>>
+===
+title: DiggyDiggyHoleStart
+---
+{$player_name}: “I am a dwarf, and I'm digging a hole. Diggy diggy hole, diggy diggy hole. I am a dwarf, and I'm digging a hole. Diggy diggy hole, digging a hole”#line:38
+<<jump TimeTypeChoice>>
+===
+title: ScarboroughStart
+---
+{$player_name}: “Are you going to Scarborough Fair? Parsley, sage, rosemary, and thyme.”#line:39
+{$player_name}: “Remember me to one who lives there. She once was a true love of mine.”#line:40
+<<jump TimeTypeChoice>>
+===
+title: TimeTypeChoice
+---
+<<run_lib time_type TimeTypeEnd 41>>
+===
+title: TimeTypeEnd
+---
+<<if starts_with(to_lower($time_type), "yummy")>>
+<<jump YummyStart>>
+<<else>>
+<<jump HilariousStart>>
+<<endif>>
+===
+title: YummyStart
+---
+{$player_name}: It was delicious.#line:42
+<<jump LoudSoundChoice>>
+===
+title: HilariousStart
+---
+{$player_name}: It was hilarious.#line:43
+<<jump LoudSoundChoice>>
+===
+title: LoudSoundChoice
+---
+<<run_lib loud_sound LoudSoundEnd 44>>
+===
+title: LoudSoundEnd
+---
+<<if starts_with(to_lower($loud_sound), "boo")>>
+<<jump BooingStart>>
+<<else>>
+<<jump SirensStart>>
+<<endif>>
+===
+title: BooingStart
+---
+*loud booing*#line:45
+<<jump HideoutChoice>>
+===
+title: SirensStart
+---
+*police sirens*#line:46
+<<jump HideoutChoice>>
+===
+title: HideoutChoice
+---
+<<run_lib hideout HideoutChosen 47>>
+===
+title: HideoutChosen
+---
+<<if starts_with(to_lower($hideout), "mil")>>
+<<jump MilitaryBaseStart>>
+<<else>>
+<<jump StadiumStart>>
+<<endif>>
+===
+title: MilitaryBaseStart
+---
+<<set_fg fg_military>>
+<<set_bg bg_military>>
+<<if starts_with(to_lower($time_period), "19")>>
+<<set_music theme_1920_mil>>
+<<else>>
+<<set_music theme_2060_mil>>
+<<endif>>
+Narrator: Ducking out of view, you ran eight miles to the nearest military base.#line:48
+Narrator: Soldiers march to and fro. And, a few are re-assembling complicated weaponry. You head over to the tents.#line:49
+{$player_name}: Free bed! Finders keepers!#line:50
+<<jump ChooseSick>>
+===
+title: StadiumStart
+---
+// <<set_fg fg_military_base>>
+// <<set_bg bg_military_base>>
+<<if starts_with(to_lower($time_period), "19")>>
+<<set_music theme_1920_sport>>
+<<else>>
+<<set_music theme_2060_sport>>
+<<endif>>
+Narrator: You two decide the best course of action is losing them in a crowd. And, there’s no crowd rowdier than one filled with sports fans.#line:51
+{$player_name}: I’m hungry! We should get some hot dogs while we’re here.#line:52
+<<jump ChooseSick>>
+===
+title: ChooseSick
+---
+<<run_lib sick SickChosen 53>>
+===
+title: SickChosen
+---
+Narrator: There there. There’s nothing hard work can’t improve upon! Chin up!#line:54
+<<run_lib colors ColorsChosen 55>>
+===
+title: ColorsChosen
+---
+<<start_spin>>
+{$player_name}: WOAHHHHHH! This is HELLA TRIPPY!#line:56
+{$player_name}: TWLEVE#line:57
+<<run_lib drink_type DrinkTypeChosen 58>>
+===
+title: DrinkTypeChosen
+---
+<<stop_spin>>
+{$player_name}: I-#line:59
+<<if starts_with(to_lower($drink), "milk")>>
+{$player_name}: No... Now, ughhhh... My stomach...#line:60
+<<else>>
+{$player_name}: Fantastic actually! Wow, look! For some reason, I feel like I could do a flip perfectly!! Wanna see?!!!#line:61
+{$player_name}: No, but you gotta trust me! I know I can. Deep deep in my bones!#line:62
+<<endif>>
+<<run_lib cost CostChosen 63>>
+===
+title: CostChosen
+---
+<<if starts_with($cost, "$0.01")>>
+{$player_name}: A penny#line:64
+{$player_name}: Haha...#line:65
+{$player_name}: I... invested it!#line:66
+<<else>>
+{$player_name}: A million dollars!#line:67
+{$player_name}: I... can’t pay that.#line:68
+<<endif>>
+<<run_lib employer EmployerChosen 69>>
+===
+title: EmployerChosen
+---
+<<if starts_with(to_lower($friend_character), "pirate")>>
+<<set_sprite_variant pirate flipped>>
+<<endif>>
+
+<<if starts_with(to_lower($employer), "info")>>
+<<show_sprite infobot>>
+{$player_name}: ...an infomercial robot at a street stand.#line:70
+Infomercial Robot: HELLO, HELLO, HELLO! HOW CAN I HELP YOU?!#line:71
+{$player_name}: I’m here to find work.#line:72
+Infomercial Robot: WELL, WE HAVE PLENTY OF THAT TO GO AROUND! WHY DON’T YOU START BY SELLING THESE COLLECTABLE GACHAPONS?!#line:73
+{$player_name}: What do we use them for?#line:73.5
+Infomercial Robot: WHO CARES?! THEY SELL LIKE HOTCAKES!#line:74
+<<else>>
+<<show_sprite duck_girl>>
+{$player_name}: ...a duck girl at a street stand.#line:75
+Duck Girl: Oooo, what’s cookin’, good lookin’?#line:76
+{$player_name}: I’m broke. I need money.#line:77
+Duck Girl: Well, don’t we all? Why don’t you start helping me sell this lemonade? They’re made from premium lemons!#line:78
+{$player_name}: But isn’t that lemonade powder mix?#line:79
+Duck Girl: AS LONG AS THEY DON’T KNOW, WHO CARES?! IT SELLS LIKE HOTCAKES!#line:80
+<<endif>>
+Narrator: And so, you sell your soul and in turn start selling knicks-knacks.#line:81
+Narrator: But of course, like any worker with a brain, you sought to make things easier for yourself.#line:82
+<<run_lib excuse ExcuseChosen 83>>
+===
+title: ExcuseChosen
+---
+<<if starts_with(to_lower($excuse), "my")>>
+	{$player_name}: My entire being yearns for you!#line:84
+
+	<<if starts_with(to_lower($employer), "info")>>
+		Infomercial Robot: R-REALLY?! YOU NOTICED ME? I... AS A ROBOT, I’M FASCINATED BY YOUR INFATUATION WITH ME WHEN I HAVE NO REGARD FOR YOU WHATSOEVER!#line:85
+		Infomercial Robot: BUT, I SUPPOSE WE COULD FILE AS A COUPLE FOR TAX BENEFITS! LET’S TAKE A BREAK FROM THIS WHILE I OBTAIN THE PAPERWORK!#line:86
+	<<else>>
+		Duck Girl: W-wow! I’m... I’d be happy to! I know we just met but...#line:87
+		Duck Girl: This is fantastic! We could get so many tax breaks from my lemonade business! LET’S GO GET THE PAPERWORK!#line:88
+	<<endif>>
+<<else>>
+	{$player_name}: I have to pet the neighbor's cat!#line:89
+
+	<<if starts_with(to_lower($employer), "info")>>
+		Infomercial Robot: A FELINE? YOU’RE ALLOWING YOURSELF TO BE DISTRACTED BY A CREATURE THAT HAS NO REGARD FOR YOU?#line:90
+		Infomercial Robot: A FASCINATING IDEA. ALLOW ME TO ACCOMPANY YOU!#line:91
+	<<else>>
+		Duck Girl: A kitty cat? Well, sure! This seems pretty important to you!#line:92
+		Duck Girl: Mind if I tag along? Maybe we could start selling rubber kitties later...#line:93
+	<<endif>>
+<<endif>>
+<<run_lib home HomeChosen 94>>
+===
+title: HomeChosen
+---
+<<go_home>>
+===
+title: Home
+---
+<<disable_start>>
+<<show_sprite protag>>
+<<declare $seen_duck = false>>
+<<declare $seen_pirate = false>>
+<<declare $seen_shark = false>>
+<<declare $seen_ring = false>>
+<<declare $seen_sock = false>>
+<<declare $seen_infobot = false>>
+<<declare $seen_1920s = false>>
+<<declare $seen_2060s = false>>
+{$player_name}: I’m home!#line:95
+<<if $seen_shark>>
+<<show_sprite shark>>
+Shark: *Still flopping. Rumor has it that Sharky will be flopping strong until the end of time...*#line:96
+<<hide_sprite shark>>
+<<endif>>
+<<if $seen_pirate>>
+<<show_sprite pirate>>
+Pirate: “Arrrrr! Matey, welcome home! It ain’t shiny, but just wait till we fill it up with treasure.”#line:97
+<<hide_sprite pirate>>
+<<endif>>
+<<if $seen_infobot>>
+<<show_sprite infobot>>
+Infomercial Robot: “WELCOME HOME! OR SO MY PROGRAM TELLS ME. OTHERWISE, IT MAKES NO DIFFERENCE TO ME WHERE YOU’RE LOCATED... YOUR ABSENCE COULD MAKE A DIFFERENCE TO ME IF YOU TOOK ADVANTAGE OF OUR LIMITED TIME SALE.”#line:98
+<<hide_sprite infobot>>
+<<endif>>
+<<if $seen_duck>>
+<<show_sprite duck_girl>>
+Duck Girl: Welcome home! I’m super duper happy to see you! My favorite person in the whole world! Look, aren’t I the cutest duck you could ever come home to? UWU!#line:99
+<<hide_sprite duck_girl>>
+<<endif>>
+Narrator: And, of course, your handsome, and might I say strongest, guide welcomes you home. You came quite a long way. Is it everything you remember it to be?#line:100
+{$player_name}: It’s! It’s... This isn’t a house that I remember.#line:101
+{$player_name}: Everything feels a bit empty...#line:102
+Narrator: Well... could you have misremembered something down the line? Were there other choices that could have filled in the gaps?#line:103
+Narrator: You ponder what to do, but you feel yourself drawn to your book. #line:104
+Narrator: Yearning... yearning... to give finding home just one more try. #line:105
+<<hide_sprite protag>>
+<<enable_start>>
+<<hide_dialogue>>
+===
+title: Secret
+---
+<<disable_start>>
+{$player_name}: My home is full. Overflowing with everything I cherished from my journey, so... Why do I want to play again?#line:106
+{$player_name}: And again?#line:107
+{$player_name}: And again, and again and again and again-and-againandagainandagainandagainandagony???#line:108
+{$player_name}: People… always associate home with being warm and cozy.#line:109
+{$player_name}: As is this place. Right? I couldn’t use better words to describe it-#line:110
+{$player_name}: And yet, I’m too unsettled to just settle in.#line:111
+{$player_name}: I’ve... I’ve made friends. I’ve made experiences. I built all this. So why does it feel so wrong?#line:112
+Narrator: Because this isn’t real.#line:113
+Narrator: Pretending makes us jealous of what couldn’t be ours.#line:114
+Narrator: Growing up, under your roof, it was never a home, was it? #line:115
+Narrator: The walls were too thin. Anger... loneliness… instability... tore its foundation apart. How could you have felt safe? #line:116
+{$player_name}: Then how do I feel safe?! Then how do I FEEL OKAY?! I... I... #line:117
+Narrator: I’m sorry, but… this is something I can’t help you with. #line:118
+{$player_name}: Why not?! #line:119
+Narrator: Because this is your life. Not mine.#line:120
+Narrator: But, I will give you some free advice.#line:121
+Narrator: Even in this fantasy of yours, look around you.#line:122
+Narrator: No, I mean, really, look around you. Not at the computer screen, silly, AROUND you.#line:123
+Narrator: There’s a world out there. A real world. There’s a home out there for you. An actual one. Not one you’ve cobbled together through a bloody fill-in-the-blank.#line:124
+Narrator: Now, I think it’s time you allowed yourself to move past THIS HOUSE of fantasy.#line:125
+Narrator: Wake up. Because you can build a HOME.#line:126
+<<enable_start>>
+<<hide_dialogue>>
 ===

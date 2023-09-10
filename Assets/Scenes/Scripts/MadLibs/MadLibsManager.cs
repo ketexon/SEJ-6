@@ -12,6 +12,9 @@ public class MadLibsManager : MonoBehaviour
     MadLibsDatabase m_database;
 
     [SerializeField]
+    AudioDatabase m_audioDatabase;
+
+    [SerializeField]
     DialogueRunner m_dialogueRunner;
 
     void Awake()
@@ -26,12 +29,12 @@ public class MadLibsManager : MonoBehaviour
     }
 
     [YarnCommand("run_lib")]
-    public static void RunLib(string libName)
+    public static void RunLib(string libName, string nextLine, string clipName = "")
     {
-        Instance.RunLibImpl(libName);
+        Instance.RunLibImpl(libName, nextLine, clipName);
     }
 
-    void RunLibImpl(string libName)
+    void RunLibImpl(string libName, string nextLine, string clipName)
     {
         var prefab = m_database.Get(libName);
         if (prefab == null)
@@ -39,7 +42,15 @@ public class MadLibsManager : MonoBehaviour
             Debug.LogError($"Tried to run lib \"{libName}\", but it does not exist.");
             return;
         }
-        Instantiate(prefab, transform);
-        prefab.GetComponent<MadLibs>().Load(m_dialogueRunner);
+
+        bool showPirateMap = false;
+        if(m_dialogueRunner.VariableStorage.TryGetValue("$friend_character", out string friend) && friend.ToLower().StartsWith("pirate"))
+        {
+            showPirateMap = true;
+        }
+
+        AudioClip audioClip = m_audioDatabase.Get(clipName ?? "");
+        var go = Instantiate(prefab, transform);
+        go.GetComponent<MadLibs>().Load(m_dialogueRunner, nextLine, audioClip, showPirateMap);
     }
 }

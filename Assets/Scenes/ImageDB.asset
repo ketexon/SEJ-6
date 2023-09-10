@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f749854b632389742b37d59831f2d3f7, type: 3}
+  m_Name: ImageDB
+  m_EditorClassIdentifier: 
+  Entries:
+  - Key: fg_brit1920
+    Value: {fileID: 2800000, guid: 63d63ce6ddf4e3e4a87097b4c4f5426f, type: 3}
+  - Key: fg_forest
+    Value: {fileID: 2800000, guid: 275c01cac41e4cb479da6201f8fa728a, type: 3}
+  - Key: fg_utop2060
+    Value: {fileID: 2800000, guid: 487200d096eaa9c4da545165da94c0a2, type: 3}
+  - Key: bg_brit1920
+    Value: {fileID: 2800000, guid: 7ffbd1cf56cea57459996baaec84852a, type: 3}
+  - Key: bg_forest
+    Value: {fileID: 2800000, guid: 82d6b81d20549444b9d2839d0225a23d, type: 3}
+  - Key: bg_utop2060
+    Value: {fileID: 2800000, guid: d780dd5715daa53488efd8272089e467, type: 3}
+  - Key: bg_military
+    Value: {fileID: 2800000, guid: 7cac9540b342faa428173a0d54a86199, type: 3}
+  - Key: fg_military
+    Value: {fileID: 2800000, guid: 64e8c2f1f08cf994bb556eb491204e68, type: 3}

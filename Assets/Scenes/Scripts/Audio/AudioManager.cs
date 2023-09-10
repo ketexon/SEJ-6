@@ -11,7 +11,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioDatabase m_audioDatabase;
 
-    AudioSource m_audioSource;
+    [SerializeField]
+    AudioSource m_audioSourceFront;
+
+    [SerializeField]
+    AudioSource m_audioSourceBack;
+
+    [SerializeField]
+    float m_fadeDuration = 5f;
 
     void Awake()
     {
@@ -23,8 +30,6 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
-
-        m_audioSource = GetComponent<AudioSource>();
     }
 
     void OnDestroy()
@@ -49,9 +54,34 @@ public class AudioManager : MonoBehaviour
             Debug.LogError($"Cannot find music with name: {name}");
             return;
         }
-        m_audioSource.clip = clip;
-        m_audioSource.volume = volume;
-        m_audioSource.Play();
+        float time = m_audioSourceFront.time;
+        m_audioSourceBack.clip = clip;
+        m_audioSourceBack.volume = volume;
+        m_audioSourceBack.time = time;
+        m_audioSourceBack.Play();
+
+        IEnumerator FadeCoroutine()
+        {
+            float startTime = Time.time;
+            while (true)
+            {
+                float t = (Time.time - startTime) / m_fadeDuration;
+                if(t > 1)
+                {
+                    break;
+                }
+
+                m_audioSourceBack.volume = t;
+                m_audioSourceFront.volume = 1 - t;
+                yield return new WaitForEndOfFrame();
+            }
+            m_audioSourceBack.volume = 1.0f;
+            m_audioSourceFront.volume = 0.0f;
+            // swap the two *references*, as to not disturb the audio already playing
+            (m_audioSourceFront, m_audioSourceBack) = (m_audioSourceBack, m_audioSourceFront);
+            m_audioSourceBack.Stop();
+        }
+        StartCoroutine(FadeCoroutine());
     }
 
     [YarnCommand("play_sfx")]
@@ -68,6 +98,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogError($"Cannot find music with name: {name}");
             return;
         }
-        m_audioSource.PlayOneShot(clip, volume);
+        m_audioSourceFront.PlayOneShot(clip, volume);
     }
 }
