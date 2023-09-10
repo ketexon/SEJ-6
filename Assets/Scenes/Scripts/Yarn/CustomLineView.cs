@@ -8,9 +8,9 @@ using System;
 public class CustomLineView : DialogueViewBase
 {
 #if UNITY_EDITOR
-    const bool AllowSkipAudio = true;
+    public static bool AllowSkipAudio = true;
 #else
-    const bool AllowSkipAudio = false;
+    public static bool AllowSkipAudio = false;
 #endif
 
     public static CustomLineView Instance;
@@ -44,6 +44,14 @@ public class CustomLineView : DialogueViewBase
         m_canvasGroup.alpha = 0;
         m_canvasGroup.blocksRaycasts = false;
         Instance = this;
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.F9))
+        {
+            AllowSkipAudio = true;
+        }
     }
 
     public override void DismissLine(Action onDismissalComplete)

@@ -37,12 +37,6 @@ public class MadLibsEditor : Editor
 [RequireComponent(typeof(AudioSource))]
 public class MadLibs : MonoBehaviour
 {
-#if UNITY_EDITOR
-    const bool RequireAudioFinishToSubmit = false;
-#else
-    const bool RequireAudioFinishToSubmit = true;
-#endif
-
     [SerializeField]
     List<WordBlankBase> m_blanks = new();
 
@@ -156,7 +150,7 @@ public class MadLibs : MonoBehaviour
 
     void UpdateSubmitEnabled()
     {
-        bool disabled = RequireAudioFinishToSubmit && !m_audioFinished;
+        bool disabled = !CustomLineView.AllowSkipAudio && !m_audioFinished;
         if (!disabled)
         {
             foreach (var entry in m_blankValues)
