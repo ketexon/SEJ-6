@@ -9,8 +9,6 @@ public class HomeYarnspinnerManager : MonoBehaviour
     [SerializeField]
     string m_homeScript = "Home";
 
-    DebugGlobalVars m_dbgGlobalVars;
-
     DialogueRunner m_dialogueRunner;
 
     bool m_playedHomeScene = false;
@@ -18,11 +16,6 @@ public class HomeYarnspinnerManager : MonoBehaviour
     void Awake()
     {
         m_dialogueRunner = GetComponent<DialogueRunner>();
-        m_dbgGlobalVars = GetComponent<DebugGlobalVars>();
-        if(m_dbgGlobalVars != null)
-        {
-            m_dbgGlobalVars.VarsSetEvent += PlayHomeScene;
-        }
     }
 
     void Start()

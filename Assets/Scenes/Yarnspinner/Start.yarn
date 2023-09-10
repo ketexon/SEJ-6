@@ -406,6 +406,5 @@ Narrator: No, I mean, really, look around you. Not at the computer screen, silly
 Narrator: There’s a world out there. A real world. There’s a home out there for you. An actual one. Not one you’ve cobbled together through a bloody fill-in-the-blank.#line:124
 Narrator: Now, I think it’s time you allowed yourself to move past THIS HOUSE of fantasy.#line:125
 Narrator: Wake up. Because you can build a HOME.#line:126
-<<enable_start>>
-<<hide_dialogue>>
+<<goto_outro>>
 ===

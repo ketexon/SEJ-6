@@ -94,6 +94,18 @@ public class DialogueSceneManager : MonoBehaviour
             }
         }
 
+        if (m_dialogueRunner.VariableStorage.TryGetValue("$drink", out string drink))
+        {
+            if (drink.ToLower().StartsWith("milk"))
+            {
+                GlobalState.PathsSeen.DrinkMilk = true;
+            }
+            else if (timePeriod.ToLower().StartsWith("un"))
+            {
+                GlobalState.PathsSeen.DrinkUnidentifiable = true;
+            }
+        }
+
         var loadOp = SceneManager.LoadSceneAsync(m_homeScene);
         loadOp.allowSceneActivation = false;
 

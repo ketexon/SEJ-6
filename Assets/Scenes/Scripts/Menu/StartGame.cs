@@ -19,10 +19,7 @@ public class StartGame : MonoBehaviour
     MenuFader m_menuFader;
 
     [SerializeField]
-    string m_secretScript = "Secret";
-
-    [SerializeField]
-    DialogueRunner m_dialogueRunner;
+    SecretScene m_secretScene;
 
     [SerializeField]
     float m_fadeDuration = 1.0f;
@@ -66,9 +63,10 @@ public class StartGame : MonoBehaviour
 
     void OnStartClicked()
     {
-        if (GlobalState.PathsSeen.SeenAll)
+        if (GlobalState.PathsSeen.SeenAll && !GlobalState.SecretSeen)
         {
-            m_dialogueRunner.StartDialogue(m_secretScript);
+            m_secretScene.StartScene();
+            m_button.interactable = false;
             return;
         }
         var loadOp = SceneManager.LoadSceneAsync(m_nextSceneName);

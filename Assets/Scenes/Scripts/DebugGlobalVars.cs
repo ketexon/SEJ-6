@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DebugGlobalVars : MonoBehaviour
 {
-    public System.Action VarsSetEvent;
     float? m_timeHeldStart;
 
     void Update()
@@ -37,7 +37,9 @@ public class DebugGlobalVars : MonoBehaviour
             Shark = true,
             Time1920s = true,
             Time2060s = true,
+            DrinkMilk = true,
+            DrinkUnidentifiable = true,
         };
-        VarsSetEvent?.Invoke();
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -14,9 +14,6 @@ public class QMark : MonoBehaviour
     [SerializeField]
     float m_rotateInterval = 3;
 
-    [SerializeField]
-    DebugGlobalVars m_dbgGlobalVars;
-
     float m_startTime = 0;
 
     void Awake()
@@ -25,13 +22,6 @@ public class QMark : MonoBehaviour
         if (!GlobalState.PathsSeen.SeenAll)
         {
             GetComponent<Graphic>().color = Color.clear;
-        }
-        if(m_dbgGlobalVars != null)
-        {
-            m_dbgGlobalVars.VarsSetEvent += () =>
-            {
-                GetComponent<Graphic>().color = Color.white;
-            };
         }
     }
 

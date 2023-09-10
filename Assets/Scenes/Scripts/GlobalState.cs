@@ -9,17 +9,25 @@ public class PathsSeen
     public bool InfoBot = false;
     public bool DuckGirl = false;
 
+    public bool DrinkMilk = false;
+    public bool DrinkUnidentifiable = false;
     public bool Time1920s = false;
     public bool Time2060s = false;
     public bool ClotheSock = false;
     public bool ClotheRing = false;
 
-    public bool SeenAll => Shark && Pirate && InfoBot && DuckGirl && Time1920s && Time2060s && ClotheSock && ClotheRing;
+    public bool SeenAll => 
+        Shark && Pirate 
+        && InfoBot && DuckGirl 
+        && Time1920s && Time2060s 
+        && ClotheSock && ClotheRing
+        && DrinkMilk && DrinkUnidentifiable;
 }
 
 public static class GlobalState
 {
     public static bool PlayedOnce = false;
+    public static bool SecretSeen = false;
     public static string PlayerName = null;
     public static PathsSeen PathsSeen = new();
 }
