@@ -1597,6 +1597,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4755106556083953775, guid: af3d56da29b49c242ab2734c98ff0d24, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5094934954265564120, guid: af3d56da29b49c242ab2734c98ff0d24, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2036,7 +2040,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3140910503643506258, guid: 19ba073e21cc3f14c91b99fdb468803c, type: 3}
       propertyPath: m_value
-      value: pink
+      value: red
       objectReference: {fileID: 0}
     - target: {fileID: 4416498621305287137, guid: 19ba073e21cc3f14c91b99fdb468803c, type: 3}
       propertyPath: m_AnchorMax.x

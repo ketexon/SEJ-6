@@ -50,9 +50,9 @@ public class SpinEffect : MonoBehaviour
     }
 
     [YarnCommand("start_spin")]
-    public static void StartSpin()
+    public static void StartSpin(string color1, string color2)
     {
-        Instance.StartSpinImpl();
+        Instance.StartSpinImpl(color1, color2);
     }
 
     [YarnCommand("stop_spin")]
@@ -61,8 +61,21 @@ public class SpinEffect : MonoBehaviour
         Instance.StopSpinImpl();
     }
 
-    void StartSpinImpl()
+    Color StringToColor(string s)
     {
+        string sn = s.ToLower();
+        if (sn.StartsWith("red")) return Color.red;
+        if (sn.StartsWith("blue")) return Color.blue;
+        if (sn.StartsWith("green")) return Color.green;
+        if (sn.StartsWith("purple")) return new Color(1, 0, 1);
+        return Color.white;
+    }
+
+    void StartSpinImpl(string color1Str, string color2Str)
+    {
+        m_spinSettings.color1.value = StringToColor(color1Str); ;
+        m_spinSettings.color2.value = StringToColor(color2Str); ;
+
         m_spinEnabled = true;
         m_spinStartTime = Time.time;
         IEnumerator EaseCoroutine()
