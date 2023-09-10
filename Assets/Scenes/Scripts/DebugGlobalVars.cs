@@ -9,11 +9,11 @@ public class DebugGlobalVars : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F9) && m_timeHeldStart == null)
+        if (Input.GetKeyDown(KeyCode.Backslash) && m_timeHeldStart == null)
         {
             m_timeHeldStart = Time.time;
         }
-        else if(Input.GetKeyUp(KeyCode.F9) && m_timeHeldStart != null) {
+        else if(Input.GetKeyUp(KeyCode.Backslash) && m_timeHeldStart != null) {
             if(Time.time - m_timeHeldStart > 3.0f)
             {
                 SetDebugVars();

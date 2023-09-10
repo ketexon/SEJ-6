@@ -48,7 +48,7 @@ public class CustomLineView : DialogueViewBase
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F9))
+        if (Input.GetKey(KeyCode.Backslash))
         {
             AllowSkipAudio = true;
         }

@@ -253,7 +253,7 @@ Narrator: There there. There’s nothing hard work can’t improve upon! Chin up
 ===
 title: ColorsChosen
 ---
-<<start_spin>>
+<<start_spin $color1 $color2>>
 {$player_name}: WOAHHHHHH! This is HELLA TRIPPY!#line:56
 {$player_name}: TWLEVE#line:57
 <<run_lib drink_type DrinkTypeChosen 58>>
@@ -386,6 +386,7 @@ Narrator: Yearning... yearning... to give finding home just one more try. #line:
 title: Secret
 ---
 <<disable_start>>
+<<show_sprite protag>>
 {$player_name}: My home is full. Overflowing with everything I cherished from my journey, so... Why do I want to play again?#line:106
 {$player_name}: And again?#line:107
 {$player_name}: And again, and again and again and again-and-againandagainandagainandagainandagony???#line:108
