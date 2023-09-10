@@ -363,7 +363,8 @@ Pirate: “Arrrrr! Matey, welcome home! It ain’t shiny, but just wait till we 
 <<endif>>
 <<if $seen_infobot>>
 <<show_sprite infobot>>
-Infomercial Robot: “WELCOME HOME! OR SO MY PROGRAM TELLS ME. OTHERWISE, IT MAKES NO DIFFERENCE TO ME WHERE YOU’RE LOCATED... YOUR ABSENCE COULD MAKE A DIFFERENCE TO ME IF YOU TOOK ADVANTAGE OF OUR LIMITED TIME SALE.”#line:98
+Infomercial Robot: WELCOME HOME! OR SO MY PROGRAM TELLS ME. OTHERWISE, IT MAKES NO DIFFERENCE TO ME WHERE YOU’RE LOCATED... #line:98
+Infomercial Robot: YOUR ABSENCE COULD MAKE A DIFFERENCE TO ME IF YOU TOOK ADVANTAGE OF OUR LIMITED TIME SALE.#line:98.5
 <<hide_sprite infobot>>
 <<endif>>
 <<if $seen_duck>>
