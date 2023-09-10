@@ -231,8 +231,8 @@ Narrator: Soldiers march to and fro. And, a few are re-assembling complicated we
 ===
 title: StadiumStart
 ---
-// <<set_fg fg_military_base>>
-// <<set_bg bg_military_base>>
+<<set_fg fg_stadium>>
+<<set_bg bg_stadium>>
 <<if starts_with(to_lower($time_period), "19")>>
 <<set_music theme_1920_sport>>
 <<else>>

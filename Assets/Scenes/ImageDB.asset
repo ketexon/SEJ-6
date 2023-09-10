@@ -29,3 +29,7 @@ MonoBehaviour:
     Value: {fileID: 2800000, guid: 7cac9540b342faa428173a0d54a86199, type: 3}
   - Key: fg_military
     Value: {fileID: 2800000, guid: 64e8c2f1f08cf994bb556eb491204e68, type: 3}
+  - Key: fg_stadium
+    Value: {fileID: 2800000, guid: 7393c8428e4861e4c8cb17fb1800e982, type: 3}
+  - Key: bg_stadium
+    Value: {fileID: 2800000, guid: a71bb362d82239045922b58d8a250544, type: 3}
