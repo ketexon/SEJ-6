@@ -469,8 +469,8 @@ RectTransform:
   - {fileID: 199942566}
   - {fileID: 421671409}
   - {fileID: 159252366}
-  - {fileID: 1274081495}
   - {fileID: 2024042095}
+  - {fileID: 1274081495}
   - {fileID: 1508909360}
   - {fileID: 1097995051}
   - {fileID: 1030834612}
@@ -494,7 +494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8b018a4b70b5744a33304f0e6aaf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_completeBackground: {fileID: 1274081496}
   m_ringProp: {fileID: 1425914982}
   m_sockProp: {fileID: 352960571}
   m_1920Prop: {fileID: 42292625}
@@ -522,6 +521,8 @@ MonoBehaviour:
   m_dialogueRunner: {fileID: 1795060571}
   m_secretScript: Secret
   m_secretScriptWaitTime: 5
+  m_filledBackground: {fileID: 1274081496}
+  m_filledBackgroundFadeDuration: 1
   m_background: {fileID: 2024042096}
 --- !u!1 &159252365
 GameObject:
@@ -2506,6 +2507,10 @@ PrefabInstance:
     - target: {fileID: 781079800914849782, guid: cf4f424e273a6a64a917d450e5bcc5f9, type: 3}
       propertyPath: m_Name
       value: Yarnspinner
+      objectReference: {fileID: 0}
+    - target: {fileID: 993878211778108920, guid: cf4f424e273a6a64a917d450e5bcc5f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.7700195
       objectReference: {fileID: 0}
     - target: {fileID: 997444128167465205, guid: cf4f424e273a6a64a917d450e5bcc5f9, type: 3}
       propertyPath: startNode

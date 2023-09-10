@@ -30,6 +30,9 @@ public class IntroScene : MonoBehaviour
     string m_nextScene = "Menu";
 
     [SerializeField]
+    float m_secretInitialWait = 2;
+
+    [SerializeField]
     float m_fadeTextDuration = 1.0f;
 
     [SerializeField]
@@ -50,28 +53,33 @@ public class IntroScene : MonoBehaviour
     [SerializeField]
     float m_fadeInHomeOffset = 1.0f;
 
-    float m_startTime;
-
-    int m_state = 0;
-
     void Start()
     {
-        m_startTime = Time.time;
-
         m_textStart.alpha = 0;
         m_textMiddle.alpha = 0;
         m_textEnd.alpha = 0;
 
+        if (GlobalState.SecretSeen)
+        {
+            StartCoroutine(Wait(m_secretInitialWait, StartFading));
+        }
+        else
+        {
+            StartFading();
+        }
+    }
 
+    void StartFading()
+    {
         float m_textDuration = GlobalState.SecretSeen ? m_textDurationOutro : m_textDurationIntro;
-
+        
         StartCoroutine(Fade(new CanvasGroup[] { m_textStart, m_textEnd }, 0, 1, m_fadeTextDuration, () =>
         {
             StartCoroutine(Wait(m_textDuration, () =>
             {
                 StartCoroutine(Fade(new CanvasGroup[] { m_textStart, m_textEnd }, 1, 0, m_fadeTextDuration, () =>
                 {
-                    if(!GlobalState.SecretSeen)
+                    if (!GlobalState.SecretSeen)
                     {
                         SceneManager.LoadScene(m_nextScene);
                     }
@@ -127,55 +135,4 @@ public class IntroScene : MonoBehaviour
         yield return new WaitForSeconds(duration);
         callback?.Invoke();
     }
-
-    //void Update()
-    //{
-    //    if (!GlobalState.SecretSeen)
-    //    {
-    //        float t = Time.time - m_startTime;
-    //        if (t < 1)
-    //        {
-    //            m_textStart.alpha = t;
-    //            m_textEnd.alpha = t;
-    //        }
-    //        else if (t < 3)
-    //        {
-    //            m_textStart.alpha = 1;
-    //            m_textEnd.alpha = 1;
-    //        }
-    //        else if (t > 3)
-    //        {
-    //            m_textStart.alpha = Mathf.Max(4 - t, 0);
-    //            m_textEnd.alpha = Mathf.Max(4 - t, 0);
-    //        }
-    //        if (t > 4)
-    //        {
-    //            SceneManager.LoadScene(m_nextScene);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        float t = Time.time - m_startTime;
-    //        if (m_state == 0)
-    //        {
-                
-    //        }
-    //        if (t < 1f)
-    //        {
-    //            m_textMiddle.alpha = 0;
-    //        }
-    //        else if (t > 1 && t < )
-    //        {
-    //            m_textMiddle.alpha = t - 0.5f;
-    //        }
-    //        else if (t < 4)
-    //        {
-    //            m_textMiddle.alpha = 1;
-    //        }
-    //        else if (t > 4)
-    //        {
-    //            m_textMiddle.alpha = Mathf.Max(5 - t, 0);
-    //        }
-    //    }
-    //}
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class MenuVariantLoader : MonoBehaviour
 {
     [SerializeField]
-    CanvasGroup m_completeBackground;
-
-    [SerializeField]
     CanvasGroup m_ringProp;
 
     [SerializeField]
@@ -27,7 +24,6 @@ public class MenuVariantLoader : MonoBehaviour
 
     void Start()
     {
-        m_completeBackground.alpha = GlobalState.PathsSeen.SeenAll ? 1 : 0;
         if (!GlobalState.PathsSeen.SeenAll)
         {
             m_ringProp.alpha = GlobalState.PathsSeen.ClotheRing ? 1 : 0;

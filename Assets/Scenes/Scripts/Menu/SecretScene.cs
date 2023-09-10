@@ -34,7 +34,13 @@ public class SecretScene : MonoBehaviour
     string m_secretScript = "Secret";
 
     [SerializeField]
-    float m_secretScriptWaitTime = 2;
+    float m_secretScriptWaitTime = 5;
+
+    [SerializeField]
+    CanvasGroup m_filledBackground;
+
+    [SerializeField]
+    float m_filledBackgroundFadeDuration = 1f;
 
     [SerializeField]
     CanvasGroup m_background;
@@ -44,11 +50,14 @@ public class SecretScene : MonoBehaviour
     ChromaticAberration m_chromaticAbberration;
     Coroutine m_chromaticAbberrationCoroutine = null;
 
+    float m_chromaticAbberrationIntensityMult = 1.0f;
+
     void Awake()
     {
         Instance = this;
 
         m_background.alpha = 0;
+        m_filledBackground.alpha = 0;
         m_chromaticAbberration = m_chromaticAbberrationVolume.profile.GetSetting<ChromaticAberration>();
     }
 
@@ -90,10 +99,12 @@ public class SecretScene : MonoBehaviour
                 m_chromaticAbberrationFlickerIntensityRange.x,
                 m_chromaticAbberrationFlickerIntensityRange.y
             );
-            m_chromaticAbberration.intensity.value = intensity;
+            m_chromaticAbberration.intensity.value = intensity * m_chromaticAbberrationIntensityMult;
             m_chromaticAbberration.enabled.value = true;
             yield return new WaitForSeconds(m_chromaticAbberrationDuration);
             m_chromaticAbberration.enabled.value = false;
+
+            if (Mathf.Approximately(m_chromaticAbberrationIntensityMult, 0.0f)) break;
         }
     }
 
@@ -109,5 +120,30 @@ public class SecretScene : MonoBehaviour
         {
             SceneManager.LoadScene(m_outroScene);
         });
+    }
+
+    [YarnCommand("show_color")]
+    public static void ShowColor()
+    {
+        Instance.ShowColorImpl();
+    }
+
+    void ShowColorImpl()
+    {
+        IEnumerator FadeCoroutine()
+        {
+            float startTime = Time.time;
+            while (true)
+            {
+                float t = (Time.time - startTime) / m_filledBackgroundFadeDuration;
+                if (t > 1) break;
+                m_filledBackground.alpha = t;
+                m_chromaticAbberrationIntensityMult = 1 - t;
+                yield return new WaitForEndOfFrame();
+            }
+            m_filledBackground.alpha = 1;
+        }
+
+        StartCoroutine(FadeCoroutine());
     }
 }
