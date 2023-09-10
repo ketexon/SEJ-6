@@ -253,7 +253,7 @@ Narrator: There there. There’s nothing hard work can’t improve upon! Chin up
 ===
 title: ColorsChosen
 ---
-<<start_spin $color1 $color2>>
+<<start_spin {$color1} {$color2}>>
 {$player_name}: WOAHHHHHH! This is HELLA TRIPPY!#line:56
 {$player_name}: TWLEVE#line:57
 <<run_lib drink_type DrinkTypeChosen 58>>

@@ -73,6 +73,7 @@ public class SpinEffect : MonoBehaviour
 
     void StartSpinImpl(string color1Str, string color2Str)
     {
+        Debug.Log($"Colors: \"{color1Str}\", \"{color2Str}\"");
         m_spinSettings.color1.value = StringToColor(color1Str); ;
         m_spinSettings.color2.value = StringToColor(color2Str); ;
 
