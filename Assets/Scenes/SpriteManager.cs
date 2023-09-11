@@ -85,6 +85,7 @@ public class SpriteManager : MonoBehaviour
         if (instant)
         {
             m_backgroundImageFront.texture = image;
+            m_backgroundImageFront.color = Color.white;
             return;
         }
 
@@ -148,6 +149,7 @@ public class SpriteManager : MonoBehaviour
         if (instant)
         {
             m_foregroundImageFront.texture = image;
+            m_foregroundImageFront.color = Color.white;
             return;
         }
 
