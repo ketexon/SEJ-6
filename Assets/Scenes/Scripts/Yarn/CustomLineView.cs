@@ -10,7 +10,7 @@ public class CustomLineView : DialogueViewBase
 #if UNITY_EDITOR
     public static bool AllowSkipAudio = true;
 #else
-    public static bool AllowSkipAudio = false;
+    public static bool AllowSkipAudio = true;
 #endif
 
     public static CustomLineView Instance;
@@ -31,7 +31,12 @@ public class CustomLineView : DialogueViewBase
     [SerializeField]
     float m_typeWriterSpeed = 30.0f;
 
+    [SerializeField]
+    CanvasGroup m_continueCanvasGroup;
+
     Coroutine m_presentCoroutine = null;
+
+    bool m_showedRightArrow = false;
 
     void Reset()
     {
@@ -51,6 +56,12 @@ public class CustomLineView : DialogueViewBase
         if (Input.GetKey(KeyCode.Backslash))
         {
             AllowSkipAudio = true;
+        }
+
+        if(!m_audioSource.isPlaying && !m_showedRightArrow)
+        {
+            m_continueCanvasGroup.alpha = 1;
+            m_showedRightArrow = true;
         }
     }
 
@@ -89,6 +100,8 @@ public class CustomLineView : DialogueViewBase
 
     public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
     {
+        m_continueCanvasGroup.alpha = 0;
+        m_showedRightArrow = false;
         m_characterName.text = dialogueLine.CharacterName;
         m_text.text = dialogueLine.TextWithoutCharacterName.Text;
         m_canvasGroup.alpha = 1;
@@ -124,7 +137,7 @@ public class CustomLineView : DialogueViewBase
             m_presentCoroutine = null;
         }
 
-        m_text.maxVisibleCharacters = m_text.text.Length;
+        m_text.maxVisibleCharacters = m_text.text.Length + 500;
 
         m_canvasGroup.blocksRaycasts = true;
     }

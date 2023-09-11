@@ -30,9 +30,9 @@ Narrator: Head drooping, there’s something lying in your lap. #line:4
 title: NameGiven
 ---
 <<if is_host($player_name)>>
-[empty/]#line:7
+{$player_name}:[empty/]#line:7
 <<else>>
-[empty/]#line:6
+{$player_name}:[empty/]#line:6
 <<endif>>
 <<run_lib time_period TimePeriodGiven 8>>
 ===
@@ -52,7 +52,7 @@ title: BritainStart
 {$player_name}: I grew up in Britain in the 1920s. I always fancied looking at the multi-coloured brick houses along the path home.#line:9
 {$player_name}: Everyone was always in a rush. It was a bustling time after the war ended. Excitement around every corner.#line:10
 {$player_name}: We’d stick our heads into the pubs and clubs, trying to get a peek at the jazz performers live. And, we got away with it for a while! Well... until the doorman spotted us. #line:11
-{$player_name}: I’d never know whether to take the longer, scenic way or hurry home for mum’s shepherd's pie. #line:12
+{$player_name}: I’d never know whether to take the longer, scenic way or hurry home for mum’s fish and chips. #line:12
 {$player_name}: Really? I prefer it with barbecue sauce.. #line:12.1
 <<run_lib memory_type SickStart 17>>
 ===
